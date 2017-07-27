@@ -4,6 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
 	"net/http"
+	"log"
 )
 
 type Response struct {
@@ -12,7 +13,18 @@ type Response struct {
 }
 
 func main()  {
-	controller := NewCheckController()
+	storage := NewStorage()
+	err := storage.Open()
+	defer storage.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	synchronizer := NewSynchronizer(storage)
+	go synchronizer.Start()
+
+	controller := NewCheckController(storage)
 
 	r := mux.NewRouter()
 	r.HandleFunc("/v1/check/{email}", controller.Check).Methods("GET")
