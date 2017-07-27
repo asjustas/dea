@@ -33,7 +33,7 @@ func (provider *GithubTxtProvider) Get() ([]string, error) {
 }
 
 func (provider *GithubTxtProvider) getSingle(url string) ([]string, error) {
-	content, response, err := getURL("https://raw.githubusercontent.com/MattKetmo/EmailChecker/master/res/throwaway_domains.txt")
+	content, response, err := getURL(url)
 
 	if err != nil {
 		return []string{}, err
