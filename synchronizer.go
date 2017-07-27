@@ -10,16 +10,21 @@ type Synchronizer struct {
 }
 
 func NewSynchronizer(storage *Storage) *Synchronizer {
-	s := new(Synchronizer)
-	s.Storage = storage
+	synchronizer := new(Synchronizer)
+	synchronizer.Storage = storage
 
-	return s
+	return synchronizer
 }
 
 func (synchronizer *Synchronizer) Start() {
 	provider := NewMattKetmoProvider()
 	domains, _ := provider.Get()
+	synchronizer.addDomains(domains)
 
+	fmt.Println("done")
+}
+
+func (synchronizer *Synchronizer) addDomains(domains []string) {
 	for _, domain := range domains {
 		err := synchronizer.Storage.Add(domain)
 		fmt.Println(domain)
@@ -28,6 +33,4 @@ func (synchronizer *Synchronizer) Start() {
 			log.Fatal(err)
 		}
 	}
-
-	fmt.Println("done")
 }
