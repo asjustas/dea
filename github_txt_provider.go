@@ -18,7 +18,12 @@ func (provider *GithubTxtProvider) Get() ([]string, error) {
 	urls := []string{
 		"https://raw.githubusercontent.com/MattKetmo/EmailChecker/master/res/throwaway_domains.txt",
 		"https://raw.githubusercontent.com/wesbos/burner-email-providers/master/emails.txt",
-		"https://raw.githubusercontent.com/andreis/disposable/6cceca83172b76c69337b52d9777bfaaf5aae580/domains.txt",
+		"https://raw.githubusercontent.com/andreis/disposable/master/domains.txt",
+		"https://raw.githubusercontent.com/mailster/mailster-email-verify/master/dea.txt",
+		"https://raw.githubusercontent.com/vboctor/disposable_email_checker/master/data/domains.txt",
+		"https://raw.githubusercontent.com/khanhicetea/fast-email-validator/master/src/database/DisposableEmails.txt",
+		"https://raw.githubusercontent.com/nojacko/email-data-disposable/master/bin/disposable.txt",
+		"https://raw.githubusercontent.com/slester/disposable-email-providers/master/domains.txt",
 	}
 
 	for _, url := range urls {
