@@ -14,6 +14,7 @@ func (storage *Storage) Open() error {
 	opts := badger.DefaultOptions
 	opts.Dir = "./data"
 	opts.ValueDir = "./data"
+	opts.SyncWrites = true
 
 	kv, err := badger.NewKV(&opts)
 	storage.kv = kv
