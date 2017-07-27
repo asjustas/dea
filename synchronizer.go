@@ -17,7 +17,7 @@ func NewSynchronizer(storage *Storage) *Synchronizer {
 }
 
 func (synchronizer *Synchronizer) Start() {
-	provider := NewMattKetmoProvider()
+	provider := NewGithubTxtProvider()
 	domains, _ := provider.Get()
 	synchronizer.addDomains(domains)
 
