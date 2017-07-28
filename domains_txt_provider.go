@@ -5,14 +5,14 @@ import (
 	"github.com/pkg/errors"
 )
 
-type GithubTxtProvider struct {
+type DomainsTxtProvider struct {
 }
 
-func NewGithubTxtProvider() *GithubTxtProvider {
-	return new(GithubTxtProvider)
+func NewDomainsTxtProvider() *DomainsTxtProvider {
+	return new(DomainsTxtProvider)
 }
 
-func (provider *GithubTxtProvider) Get() ([]string, error) {
+func (provider *DomainsTxtProvider) Get() ([]string, error) {
 	domains := []string{}
 
 	urls := []string{
@@ -37,7 +37,7 @@ func (provider *GithubTxtProvider) Get() ([]string, error) {
 	return domains, nil
 }
 
-func (provider *GithubTxtProvider) getSingle(url string) ([]string, error) {
+func (provider *DomainsTxtProvider) getSingle(url string) ([]string, error) {
 	content, response, err := getURL(url)
 
 	if err != nil {

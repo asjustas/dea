@@ -17,8 +17,10 @@ func NewSynchronizer(storage *Storage) *Synchronizer {
 }
 
 func (synchronizer *Synchronizer) Start() {
-	provider := NewGithubTxtProvider()
-	domains, _ := provider.Get()
+	domains, _ := NewDomainsJsonProvider().Get()
+	synchronizer.addDomains(domains)
+
+	domains, _ = NewDomainsTxtProvider().Get()
 	synchronizer.addDomains(domains)
 
 	fmt.Println("done")
