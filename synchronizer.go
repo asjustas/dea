@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"fmt"
 )
 
 type Synchronizer struct {
@@ -22,14 +21,11 @@ func (synchronizer *Synchronizer) Start() {
 
 	domains, _ = NewDomainsTxtProvider().Get()
 	synchronizer.addDomains(domains)
-
-	fmt.Println("done")
 }
 
 func (synchronizer *Synchronizer) addDomains(domains []string) {
 	for _, domain := range domains {
 		err := synchronizer.Storage.Add(domain)
-		fmt.Println(domain)
 
 		if err != nil {
 			log.Fatal(err)
